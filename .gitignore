@@ -7,3 +7,5 @@ instance/
 .pytest_cache/
 jar.txt
 .vscode/
+.env
+.env.example
