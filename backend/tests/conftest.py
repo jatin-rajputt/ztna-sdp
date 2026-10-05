@@ -3,7 +3,9 @@ import os
 os.environ.setdefault("SECRET_KEY", "test-key")
 
 import pytest
-from app import create_app
+from werkzeug.security import generate_password_hash
+from app import create_app, db
+from app.models import User
 
 
 @pytest.fixture
@@ -12,6 +14,9 @@ def app():
                       "SQLALCHEMY_DATABASE_URI": "sqlite:///:memory:",
                       "RATELIMIT_ENABLED": False})
     with app.app_context():
+        db.session.add(User(username="alice",
+                            password_hash=generate_password_hash("Pass1234!")))
+        db.session.commit()
         yield app
 
 

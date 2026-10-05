@@ -27,7 +27,8 @@ def create_app(test_config=None):
         return {"status": "ok"}
 
     # ---- JATIN's blueprints (auth, mfa, users, access, sessions) ----
-
+    from .auth.routes import bp as auth_bp
+    app.register_blueprint(auth_bp)
     # ---- KOMAL's blueprints (devices, policies, audit, dashboard) ----
 
     with app.app_context():
