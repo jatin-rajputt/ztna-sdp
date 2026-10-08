@@ -29,8 +29,7 @@ def create_app(test_config=None):
     # ---- JATIN's blueprints (auth, mfa, users, access, sessions) ----
 
     # ---- KOMAL's blueprints (devices, policies, audit, dashboard) ----
-    from .devices.routes import bp as devices_bp
-    app.register_blueprint(devices_bp)
+
     with app.app_context():
         from . import models  # noqa: F401
         db.create_all()
